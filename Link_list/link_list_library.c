@@ -86,3 +86,46 @@ int insertAfter(struct ListNode *prev_node, int val)
 
     return true;
 }
+
+int deleteNode(struct ListNode **head, int val)
+{
+    struct ListNode *current = NULL;
+    struct ListNode *prev = NULL;
+
+    current = *head;
+    while(current->val!=val && current!=NULL)
+    {
+        prev = current;
+        current = current->next;
+    }
+
+    if(current==*head)
+    {
+        /*
+        head = head->next;
+        current->next = NULL;
+        free(current);
+        //current = NULL;
+        return true;
+        */
+        prev = current;
+        current = current->next;
+        prev->next = NULL;
+        free(prev);
+        *head = current;
+        return true;
+    }
+    else if(current==NULL)
+    {
+        printf("No match data \r\n");
+
+        return false;
+    }
+    else
+    {
+        prev->next = current->next;
+        free(current);
+
+        return true;
+    }
+}
