@@ -10,10 +10,9 @@ int append(struct ListNode **head, int val)
     newNode->val = val;
     newNode->next = NULL;
 
-    if( *head==NULL)
+    if(*head==NULL)
     {
         *head = newNode;
-        printf("added at beginning\n");
     }
     else
     {
@@ -23,28 +22,31 @@ int append(struct ListNode **head, int val)
             if(current->next == NULL)
             {
                 current->next = newNode;
-                printf("added later\n");
                 break;
             }
             current = current->next;
         };
     }
 
-    return 1;
+    return true;
 }
 
-int main(int argc, char* argv[])
+int push(struct ListNode **head, int val)
 {
-    struct ListNode* head = NULL;
-    struct ListNode* tmp = NULL;
+    struct ListNode* newNode = (struct ListNode*)malloc(sizeof(struct ListNode));
 
-    bool ret = false;
+    newNode->val = val;
+    newNode->next = NULL;
 
-    append(&head, 1);
+    if(*head==NULL)
+    {
+        *head = newNode;
+    }
+    else
+    {
+        newNode->next = *head;
+        *head = newNode;
+    }
 
-    append(&head, 2);
-
-    system("pause");
-
-    return 0;
+    return true;
 }

@@ -7,5 +7,6 @@ struct ListNode {
 };
 
 int append(struct ListNode **head, int val);
+int push(struct ListNode **head, int val);
 
 #endif
